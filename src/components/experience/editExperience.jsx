@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { updateExperience } from "../../services/apiService";
+import { getExperience, updateExperience } from "../../services/apiService";
 import ExperienceForm from "./experienceForm";
 
 const EditExperience = () => {
@@ -11,9 +11,9 @@ const EditExperience = () => {
     useEffect(() => {
         const fetchExperience = async () => {
             try {
-                const response = await updateExperience(experience_id);
+                const response = await getExperience(experience_id);
 
-                setInitialData(response.data);
+                setInitialData(response);
             } catch (error) {
                 console.error("Error fetching experience:", error);
             }
@@ -24,17 +24,9 @@ const EditExperience = () => {
 
     const handleSubmit = async (data) => {
         try {
-            const response = await apiService.put(
-                `/experience/${experience_id}`,
-                data,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+            const response = await updateExperience(experience_id, data);
 
-            console.log("Experience updated:", response.data);
+            console.log("Experience updated:", response);
 
             navigate("/experiences");
         } catch (error) {

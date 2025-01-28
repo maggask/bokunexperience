@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import apiService from "../../services/apiService";
 import { createExperience } from "../../services/apiService";
 import ExperienceForm from "./experienceForm";
 
@@ -11,7 +10,7 @@ const CreateExperience = () => {
         try {
             const response = await createExperience(data);
 
-            console.log("Experience created:", response.data);
+            console.log("Experience created:", response);
 
             navigate("/experiences");
         } catch (error) {

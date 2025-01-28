@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getExperience } from "../../services/apiService";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getExperience, deleteExperience } from "../../services/apiService";
+import {
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    CardMedia,
+    Typography,
+} from "@mui/material";
+import GradeIcon from "@mui/icons-material/Grade";
+import EditExperience from "./editExperience";
 
 const ViewExperience = () => {
     const [experience, setExperience] = useState(null);
     const [loading, setLoading] = useState(true);
     const { experience_id } = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchExperience = async () => {
@@ -29,19 +41,62 @@ const ViewExperience = () => {
         return <div>Loading...</div>;
     }
 
+    // Check if the current path is for editing the experience
+    if (location.pathname.endsWith("/edit")) {
+        return <EditExperience />;
+    }
+
     return (
-        <div>
-            <h1>{experience.title}</h1>
+        <Card>
+            <CardHeader title={experience.title} />
             {experience.imageUrl && (
-                <img
+                <CardMedia
+                    height="300"
+                    component="img"
                     src={experience.imageUrl}
                     alt={experience.title}
-                    style={{ maxWidth: "100%", height: "auto" }}
                 />
             )}
-            <p>{experience.description}</p>
-            <p>Rating {experience.rating}</p>
-        </div>
+            <CardContent>
+                <Typography variant="body1" component="p" align="left">
+                    {experience.description}
+                </Typography>
+            </CardContent>
+            <CardContent
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                }}
+            >
+                <GradeIcon style={{ color: "#f1db0e" }} />
+                <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    align="left"
+                >
+                    {experience.rating}
+                </Typography>
+                <Button
+                    type="button"
+                    onClick={() =>
+                        navigate(`/experiences/${experience_id}/edit`)
+                    }
+                >
+                    Edit
+                </Button>
+                <Button
+                    type="button"
+                    onClick={() => {
+                        deleteExperience(experience_id);
+                        navigate("/experiences");
+                    }}
+                >
+                    Delete
+                </Button>
+            </CardContent>
+        </Card>
     );
 };
 
