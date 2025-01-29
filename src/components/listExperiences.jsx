@@ -85,15 +85,26 @@ const ListExperiences = () => {
                     <Card
                         key={index}
                         onClick={() => handleExperienceClick(experience.id)}
-                        style={{ cursor: "pointer", marginBottom: 16 }}
+                        sx={{
+                            maxWidth: 1000,
+                            margin: "auto",
+                            maxHeight: "100%",
+                            cursor: "pointer",
+                            marginBottom: 16,
+                        }}
                     >
                         <CardHeader title={experience.title} />
                         {experience.imageUrl && (
                             <CardMedia
-                                height="300"
                                 component="img"
                                 src={experience.imageUrl}
                                 alt={experience.title}
+                                style={{
+                                    maxHeight: "100%",
+                                    maxWidth: "100%",
+                                    display: "block",
+                                    margin: "auto",
+                                }}
                             />
                         )}
                         <CardContent
