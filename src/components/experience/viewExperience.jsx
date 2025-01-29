@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getExperience, deleteExperience } from "../../services/apiService";
 import {
+    Box,
     Button,
     Card,
     CardContent,
@@ -10,6 +11,7 @@ import {
     Typography,
 } from "@mui/material";
 import GradeIcon from "@mui/icons-material/Grade";
+import { ArrowBack, Edit, Delete } from "@mui/icons-material";
 import EditExperience from "./editExperience";
 
 const ViewExperience = () => {
@@ -48,10 +50,17 @@ const ViewExperience = () => {
 
     return (
         <Card>
-            <CardHeader title={experience.title} />
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <ArrowBack
+                    style={{ cursor: "pointer", marginLeft: 8 }}
+                    onClick={() => navigate("/experiences")}
+                />
+                <CardHeader title={experience.title} />
+            </Box>
             {experience.imageUrl && (
                 <CardMedia
-                    height="300"
+                    height="100%"
+                    width="100%"
                     component="img"
                     src={experience.imageUrl}
                     alt={experience.title}
@@ -63,38 +72,51 @@ const ViewExperience = () => {
                 </Typography>
             </CardContent>
             <CardContent
-                style={{
+                sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 8,
+                    justifyContent: "space-between",
                 }}
             >
-                <GradeIcon style={{ color: "#f1db0e" }} />
-                <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                    align="left"
+                <Box
+                    component="div"
+                    sx={{ display: "flex", gap: 1, alignItems: "center" }}
                 >
-                    {experience.rating}
-                </Typography>
-                <Button
-                    type="button"
-                    onClick={() =>
-                        navigate(`/experiences/${experience_id}/edit`)
-                    }
-                >
-                    Edit
-                </Button>
-                <Button
-                    type="button"
-                    onClick={() => {
-                        deleteExperience(experience_id);
-                        navigate("/experiences");
-                    }}
-                >
-                    Delete
-                </Button>
+                    <GradeIcon style={{ color: "#f1db0e" }} />
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                        align="left"
+                    >
+                        {experience.rating}
+                    </Typography>
+                </Box>
+                <Box sx={{ display: "flex", gap: 1 }}>
+                    <Button
+                        startIcon={<Edit />}
+                        variant="contained"
+                        type="button"
+                        sx={{ backgroundColor: "#37b26d", color: "#fff" }}
+                        onClick={() =>
+                            navigate(`/experiences/${experience_id}/edit`)
+                        }
+                    >
+                        Edit
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        startIcon={<Delete />}
+                        sx={{ color: "#f00", borderColor: "#f00" }}
+                        type="button"
+                        onClick={() => {
+                            deleteExperience(experience_id);
+                            navigate("/experiences");
+                        }}
+                    >
+                        Delete
+                    </Button>
+                </Box>
             </CardContent>
         </Card>
     );

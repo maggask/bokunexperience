@@ -91,6 +91,7 @@ const ExperienceForm = ({
                     type="text"
                     value={formData.imageUrl}
                     onChange={handleChange}
+                    required
                 />
             </Box>
             <Box
@@ -104,15 +105,20 @@ const ExperienceForm = ({
                 <Button
                     variant="contained"
                     type="button"
-                    style={{ backgroundColor: "#1b2231", marginRight: 10 }}
+                    sx={{
+                        backgroundColor: "#37b26d",
+                        marginRight: 5,
+                        color: "#fff",
+                    }}
                     onClick={handleSubmit}
+                    disabled={!formData.title || !formData.description}
                 >
                     {buttonText}
                 </Button>
                 <Button
                     variant="outlined"
                     type="button"
-                    style={{ color: "#1b2231" }}
+                    sx={{ color: "#1b2231", borderColor: "#1b2231" }}
                     onClick={() => navigate("/experiences")}
                 >
                     Cancel

@@ -11,6 +11,7 @@ import {
     AppBar,
     Button,
     Container,
+    Box,
 } from "@mui/material";
 import GradeIcon from "@mui/icons-material/Grade";
 import CreateExperience from "./experience/createExperience";
@@ -56,13 +57,24 @@ const ListExperiences = () => {
         <>
             <AppBar position="static" style={{ backgroundColor: "#1b2231" }}>
                 <Container
-                    style={{ display: "flex", justifyContent: "space-between" }}
+                    maxWidth={false}
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
                 >
+                    <Box
+                        component="img"
+                        src="src/assets/bokunlogo.png"
+                        alt="logo"
+                    />
                     <Typography variant="h2">Experiences</Typography>
                     <Button
                         variant="contained"
                         onClick={() => navigate("/experiences/new")}
                         size="small"
+                        sx={{ backgroundColor: "#37b26d" }}
                     >
                         Create new Experience
                     </Button>
