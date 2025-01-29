@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getExperience, updateExperience } from "../../services/apiService";
 import ExperienceForm from "./experienceForm";
+import { Typography } from "@mui/material";
 
 const EditExperience = () => {
     const { experience_id } = useParams();
@@ -40,7 +41,9 @@ const EditExperience = () => {
 
     return (
         <div>
-            <h2>Edit Experience</h2>
+            <Typography variant="h5" style={{ marginBottom: "5px" }}>
+                Edit Experience
+            </Typography>
             <ExperienceForm
                 initialData={initialData}
                 onSubmit={handleSubmit}

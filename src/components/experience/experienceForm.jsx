@@ -56,7 +56,6 @@ const ExperienceForm = ({
                     onChange={handleChange}
                     required
                 />
-
                 <TextField
                     variant="outlined"
                     label="Rating"
@@ -71,7 +70,6 @@ const ExperienceForm = ({
                     defaultValue={formData.rating}
                     onChange={handleChange}
                 />
-
                 <TextField
                     variant="outlined"
                     label="Description"
@@ -82,7 +80,6 @@ const ExperienceForm = ({
                     onChange={handleChange}
                     required
                 />
-
                 <TextField
                     variant="outlined"
                     label="Image URL"

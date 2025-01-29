@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createExperience } from "../../services/apiService";
 import ExperienceForm from "./experienceForm";
+import { Typography } from "@mui/material";
 
 const CreateExperience = () => {
     const navigate = useNavigate();
@@ -20,7 +21,9 @@ const CreateExperience = () => {
 
     return (
         <div>
-            <h2>Create Experience</h2>
+            <Typography variant="h5" style={{ marginBottom: "5px" }}>
+                Create Experience
+            </Typography>
             <ExperienceForm
                 onSubmit={handleSubmit}
                 buttonText="Create Experience"

@@ -90,7 +90,7 @@ const ListExperiences = () => {
                             margin: "auto",
                             maxHeight: "100%",
                             cursor: "pointer",
-                            marginBottom: 16,
+                            marginBottom: 5,
                         }}
                     >
                         <CardHeader title={experience.title} />
