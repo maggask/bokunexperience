@@ -49,7 +49,7 @@ const ViewExperience = () => {
     }
 
     return (
-        <Card>
+        <Card sx={{ maxWidth: 500, margin: "auto", maxHeight: "100%" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <ArrowBack
                     style={{ cursor: "pointer", marginLeft: 8 }}
@@ -59,11 +59,17 @@ const ViewExperience = () => {
             </Box>
             {experience.imageUrl && (
                 <CardMedia
-                    height="100%"
-                    width="100%"
+                    // height="100%"
+                    // width="100%"
                     component="img"
                     src={experience.imageUrl}
                     alt={experience.title}
+                    style={{
+                        maxHeight: "100%",
+                        maxWidth: "100%",
+                        display: "block",
+                        margin: "auto",
+                    }}
                 />
             )}
             <CardContent>
